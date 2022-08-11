@@ -1,15 +1,19 @@
 import db from "../db/index.js";
 
 export const getAllRestaurants = async (req, res) => {
-  const results = await db.query("select * from restaurants");
-  console.log(results);
+  try {
+    const results = await db.query("select * from restaurants");
 
-  res.status(200).json({
-    status: "success",
-    data: {
-      restaurants: ["Pizza Bastard", "Taco Bastard"],
-    },
-  });
+    res.status(200).json({
+      status: "success",
+      results: results.rows.length,
+      data: {
+        restaurants: results.rows,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getRestaurant = (req, res) => {
