@@ -16,8 +16,21 @@ export const getAllRestaurants = async (req, res) => {
   }
 };
 
-export const getRestaurant = (req, res) => {
-  console.log(req);
+export const getRestaurant = async (req, res) => {
+  try {
+    const result = await db.query("select * from restaurants where id = $1", [
+      req.params.id,
+    ]);
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        restaurant: result.rows[0],
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const addRestaurant = (req, res) => {
