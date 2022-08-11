@@ -1,7 +1,11 @@
-const express = require("express");
-require("dotenv").config();
+import express from "express";
+import "dotenv/config";
+
+import restaurantRoutes from "./routes/restaurantRoutes.js";
 
 const app = express();
+
+app.use("/api/v1/restaurants", restaurantRoutes);
 
 const port = process.env.PORT || 8000;
 
