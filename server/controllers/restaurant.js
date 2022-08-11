@@ -6,3 +6,7 @@ export const getAllRestaurants = (req, res) => {
     },
   });
 };
+
+export const getRestaurant = (req, res) => {
+  console.log(req)
+}
