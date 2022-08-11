@@ -8,5 +8,13 @@ export const getAllRestaurants = (req, res) => {
 };
 
 export const getRestaurant = (req, res) => {
-  console.log(req)
-}
+  console.log(req);
+};
+
+export const addRestaurant = (req, res) => {
+  console.log(req.body);
+};
+
+export const updateRestaurant = (req, res) => {};
+
+export const deleteRestaurant = (req, res) => {};
