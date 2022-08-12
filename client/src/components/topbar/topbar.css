@@ -68,6 +68,7 @@
   width: 30%;
   background-color: green;
   color: white;
+  cursor: pointer;
 }
 
 .topbar-button:hover {

@@ -1,6 +1,5 @@
-import AddRestaurant from "../../components/AddRestaurant";
-import Header from "../../components/Header";
-import Topbar from "../../components/topbar/Topbar";
+import AddRestaurant from "../../components/AddRestaurant/AddRestaurant";
+import Topbar from "../../components/Topbar/Topbar";
 import './home.css'
 
 const Home = () => {
