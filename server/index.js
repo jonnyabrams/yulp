@@ -3,6 +3,7 @@ import morgan from "morgan";
 import "dotenv/config";
 
 import restaurantRoutes from "./routes/restaurantRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.use("/api/v1/restaurants", restaurantRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 const port = process.env.PORT || 8000;
 
