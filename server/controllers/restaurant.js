@@ -51,6 +51,22 @@ export const addRestaurant = async (req, res) => {
   }
 };
 
-export const updateRestaurant = (req, res) => {};
+export const updateRestaurant = async (req, res) => {
+  try {
+    const result = await db.query(
+      "UPDATE restaurants SET name = $1, location = $2, price_range = $3 where id = $4 returning *",
+      [req.body.name, req.body.location, req.body.price_range, req.params.id]
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        restaurant: result.rows[0],
+      },
+    })
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const deleteRestaurant = (req, res) => {};
