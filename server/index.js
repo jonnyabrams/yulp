@@ -4,6 +4,7 @@ import "dotenv/config";
 
 import restaurantRoutes from "./routes/restaurantRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.use("/api/v1/restaurants", restaurantRoutes);
+app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/auth", authRoutes);
 
 const port = process.env.PORT || 8000;
