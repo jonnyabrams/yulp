@@ -58,7 +58,7 @@ const Login = () => {
               disabled={isFetching}
             >
               {isFetching ? (
-                <CircularProgress color="white" size="20px" />
+                <CircularProgress className="login-loading" />
               ) : (
                 "Log In"
               )}
@@ -68,7 +68,7 @@ const Login = () => {
               className="login-register-button"
             >
               {isFetching ? (
-                <CircularProgress color="white" size="20px" />
+                <CircularProgress className="login-loading" />
               ) : (
                 "Create a New Account"
               )}

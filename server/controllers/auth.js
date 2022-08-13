@@ -40,12 +40,7 @@ export const loginUser = async (req, res) => {
         res.status(400).json("Wrong password");
       } else {
         const { password, ...others } = user.rows[0];
-        res.status(200).json({
-          status: "success",
-          data: {
-            user: others,
-          },
-        });
+        res.status(200).json(others);
       }
     } else {
       res.status(404).json("User does not exist");
