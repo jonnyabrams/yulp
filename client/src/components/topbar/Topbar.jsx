@@ -3,12 +3,9 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./topbar.css";
-import { AuthContext } from "../../context/Auth/AuthContext";
 
-const Topbar = () => {
-  const { user } = useContext(AuthContext);
+const Topbar = ({ user, dispatch }) => {
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
 
   return (
     <div className="topbar-container">
