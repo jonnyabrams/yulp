@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import db from "../db/index.js";
 
 export const updateUser = async (req, res) => {
-  console.log(req.body.username)
   if (req.body.id === req.params.id) {
     if (req.body.password) {
       try {
@@ -35,14 +34,18 @@ export const updateUser = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-  try {
-    await db.query("DELETE FROM users where id = $1", [req.params.id]);
-
-    res.status(204).json({
-      status: "success",
-    });
-  } catch (error) {
-    console.log(error);
+  if (req.body.id === req.params.id) {
+    try {
+      await db.query("DELETE FROM users where id = $1", [req.params.id]);
+  
+      res.status(204).json({
+        status: "success",
+      });
+    } catch (error) {
+      console.log(error);
+    } 
+  } else {
+    res.status(403).json("You can delete only your account!");
   }
 };
 

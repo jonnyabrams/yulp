@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import helmet from "helmet";
 import "dotenv/config";
 
 import restaurantRoutes from "./routes/restaurantRoutes.js";
@@ -10,6 +11,7 @@ const app = express();
 
 // middleware
 app.use(express.json());
+app.use(helmet());
 app.use(morgan("tiny"));
 
 app.use("/api/v1/restaurants", restaurantRoutes);
