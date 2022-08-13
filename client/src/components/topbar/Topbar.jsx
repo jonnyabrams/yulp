@@ -1,8 +1,15 @@
 import SearchIcon from "@mui/icons-material/Search";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./topbar.css";
+import { AuthContext } from "../../context/Auth/AuthContext";
 
 const Topbar = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { dispatch } = useContext(AuthContext);
+
   return (
     <div className="topbar-container">
       <div className="topbar-left">
@@ -18,7 +25,16 @@ const Topbar = () => {
 
       <div className="topbar-right">
         <span className="topbar-link">Write a Review</span>
-        <button className="topbar-button">Log In</button>
+        {user ? (
+          <button className="topbar-logout-button" onClick={() => dispatch({ type: "LOGOUT" })}>Log Out</button>
+        ) : (
+          <button
+            className="topbar-login-button"
+            onClick={() => navigate("/login")}
+          >
+            Log In
+          </button>
+        )}
       </div>
     </div>
   );
