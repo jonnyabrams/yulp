@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import "./register.css";
+import "./login.css";
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   return (
@@ -11,28 +11,26 @@ const Register = () => {
         <div className="login-left">
           <h3 className="login-logo">Yulp</h3>
           <span className="login-description">
-            Connect with great local businesses
+            We're all restaurant critics now
           </span>
         </div>
 
         <div className="login-right">
           <form className="login-box">
             <input placeholder="Username" className="login-input" />
-            <input type="email" placeholder="Email" className="login-input" />
             <input
-              type="password"
               placeholder="Password"
+              type="password"
               className="login-input"
             />
-
             <button type="submit" className="login-button">
-              Sign up
+              Log in
             </button>
             <button
+              onClick={() => navigate("/register")}
               className="login-register-button"
-              onClick={() => navigate("/login")}
             >
-              Already have an account?
+              Create a new account
             </button>
           </form>
         </div>
@@ -41,4 +39,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
