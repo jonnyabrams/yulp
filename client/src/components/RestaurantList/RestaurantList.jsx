@@ -1,27 +1,30 @@
+import "./restaurant-list.css";
 
 const RestaurantList = () => {
   return (
-    <div className="container">
-      <div className="table">
-        <thead>
-          <tr className="row">
-            <th scope="col">Restaurant</th>
-            <th scope="col">Location</th>
-            <th scope="col">Price range</th>
-            <th scope="col">Ratings</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
+      <table className="table">
         <tbody>
           <tr>
-            <td>Pizza Bastard</td>
+            <th align="center" className="heading">Restaurant</th>
+            <th align="center" className="heading">Location</th>
+            <th align="center" className="heading">Price Range</th>
+            <th align="center" className="heading">Rating</th>
+          </tr>
+          <tr>
+            <td align="center" className="restaurant-detail">Pizza Bastard</td>
+            <td align="center" className="restaurant-detail">Bristol</td>
+            <td align="center" className="restaurant-detail">$$</td>
+            <td align="center" className="restaurant-detail">**</td>
+          </tr>
+          <tr>
+            <td align="center" className="restaurant-detail">Sushi Bastard</td>
+            <td align="center" className="restaurant-detail">Leicester</td>
+            <td align="center" className="restaurant-detail">$$$</td>
+            <td align="center" className="restaurant-detail">****</td>
           </tr>
         </tbody>
-      </div>
-    </div>
-  )
-}
+      </table>
+  );
+};
 
-export default RestaurantList
+export default RestaurantList;

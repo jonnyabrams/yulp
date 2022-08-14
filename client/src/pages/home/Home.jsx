@@ -6,6 +6,7 @@ import Topbar from "../../components/Topbar/Topbar";
 import "./home.css";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { useContext } from "react";
+import RestaurantList from "../../components/RestaurantList/RestaurantList";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const Home = () => {
           <div className="header">
             <span>Hello, {capitalise(user.username)}!</span>
           </div>
-          {showAddRestaurant ? <AddRestaurant /> : <span className="subheader" onClick={() => setShowAddRestaurant(true)}>Add a restaurant</span>}
+          {showAddRestaurant ? <AddRestaurant /> : <button className="add-restaurant-button" onClick={() => setShowAddRestaurant(true)}>Add a restaurant</button>}
         </>
       ) : (
         <>
@@ -37,6 +38,7 @@ const Home = () => {
           <span>Log in to get reviewing...</span>
         </>
       )}
+      <RestaurantList />
     </div>
   );
 };
