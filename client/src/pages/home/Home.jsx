@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import AddRestaurant from "../../components/AddRestaurant/AddRestaurant";
 import Topbar from "../../components/Topbar/Topbar";
@@ -12,6 +13,7 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
   const [showAddRestaurant, setShowAddRestaurant] = useState(false);
+  const navigate = useNavigate();
 
   const capitalise = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -25,17 +27,29 @@ const Home = () => {
           <div className="header">
             <span>Hello, {capitalise(user.username)}!</span>
           </div>
-          {showAddRestaurant ? <AddRestaurant /> : <button className="add-restaurant-button" onClick={() => setShowAddRestaurant(true)}>Add a restaurant</button>}
+          {showAddRestaurant ? (
+            <AddRestaurant />
+          ) : (
+            <button
+              className="add-restaurant-button"
+              onClick={() => setShowAddRestaurant(true)}
+            >
+              Add a restaurant
+            </button>
+          )}
         </>
       ) : (
         <>
-          <Link
-            to="/register"
-            style={{ textDecoration: "none", color: "inherit" }}
+          <div className="header">
+            <span>Log in to get reviewing...</span>
+          </div>
+
+          <button
+            className="signup-button"
+            onClick={() => navigate("/register")}
           >
-            <div className="subheader">Or sign up</div>
-          </Link>
-          <span>Log in to get reviewing...</span>
+            ...or sign up
+          </button>
         </>
       )}
       <RestaurantList />

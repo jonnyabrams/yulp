@@ -22,6 +22,17 @@
   text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
 }
 
+.signup-button {
+  height: 40px;
+  width: 130px;
+  font-size: 17px;
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+}
+
 .add-restaurant-button {
   height: 40px;
   width: 80px;
