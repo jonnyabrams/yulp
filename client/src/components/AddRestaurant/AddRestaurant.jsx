@@ -1,20 +1,22 @@
+import './add-restaurant.css'
+
 const AddRestaurant = () => {
   return (
-    <div className="d-flex gap-3 mb-4">
+    <div className="container">
       <form>
         <div className="row">
-          <div className="col">
-            <input type="text" placeholder="Name" className="form-control" />
+          <div className="element">
+            <input type="text" placeholder="Name" className="text-input" />
           </div>
-          <div className="col">
+          <div className="element">
             <input
               type="text"
               placeholder="Location"
-              className="form-control"
+              className="text-input"
             />
           </div>
-          <div className="col">
-            <select className="custom-select my-1 mr-sm-2">
+          <div className="element">
+            <select className="dropdown">
               <option disabled>Price range</option>
               <option value="1">$</option>
               <option value="2">$$</option>
@@ -23,8 +25,8 @@ const AddRestaurant = () => {
               <option value="5">$$$$$</option>
             </select>
           </div>
-          <div className="col">
-            <button className="btn btn-primary">Add</button>
+          <div className="element">
+            <button className="button">Add</button>
           </div>
         </div>
       </form>
