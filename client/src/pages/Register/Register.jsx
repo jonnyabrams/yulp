@@ -1,26 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 import "./register.css";
 
 const Register = () => {
-  const username = useRef();
-  const email = useRef();
-  const password = useRef();
-  const passwordAgain = useRef();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (passwordAgain.current.value !== password.current.value) {
-      passwordAgain.current.setCustomValidity("Passwords don't match!");
+    if (passwordAgain !== password) {
+      setPasswordsMatch(false);
     } else {
       const user = {
-        username: username.current.value,
-        email: email.current.value,
-        password: password.current.value,
+        username: username,
+        email: email,
+        password: password,
       };
       try {
         await axios.post("/auth/register", user);
@@ -46,26 +47,41 @@ const Register = () => {
             <input
               placeholder="Username"
               className="login-input"
-              ref={username}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type="email"
               placeholder="Email"
               className="login-input"
-              ref={email}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               placeholder="Password"
               className="login-input"
-              ref={password}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <input
               type="password"
               placeholder="Confirm password"
               className="login-input"
-              ref={passwordAgain}
+              value={passwordAgain}
+              onChange={(e) => setPasswordAgain(e.target.value)}
             />
+            <span
+              style={{
+                display: passwordsMatch ? "none" : "block",
+                color: "red",
+                fontSize: "12px",
+                alignSelf: "flex-end",
+                marginRight: "5px",
+              }}
+            >
+              * Passwords do not match
+            </span>
 
             <button type="submit" className="login-button">
               Sign up

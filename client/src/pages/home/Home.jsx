@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 import AddRestaurant from "../../components/AddRestaurant/AddRestaurant";
 import Topbar from "../../components/Topbar/Topbar";
-import './home.css'
+import "./home.css";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { useContext } from "react";
 
@@ -10,14 +12,24 @@ const Home = () => {
 
   const capitalise = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
 
   return (
     <div className="main">
       <Topbar user={user} dispatch={dispatch} />
       <div className="welcome-message">
-        {user ? `Hello, ${capitalise(user.username)}!` : 'Log in to get reviewing...'}
+        {user
+          ? `Hello, ${capitalise(user.username)}!`
+          : "Log in to get reviewing..."}
       </div>
+      {!user && (
+        <Link
+          to="/register"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <div className="signup-prompt">Or sign up</div>
+        </Link>
+      )}
     </div>
   );
 };
