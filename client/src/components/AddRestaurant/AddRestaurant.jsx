@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 
 import RestaurantFinder from "../../apis/RestaurantFinder";
+import { AuthContext } from "../../context/Auth/AuthContext";
 import { RestaurantsContext } from "../../context/Restaurants/RestaurantContext";
 import "./add-restaurant.css";
 
 const AddRestaurant = () => {
+  const { user } = useContext(AuthContext);
   const { addRestaurants } = useContext(RestaurantsContext)
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
@@ -17,6 +19,7 @@ const AddRestaurant = () => {
       const response = await RestaurantFinder.post("/", {
         name,
         location,
+        user_id: user.id,
         price_range: priceRange
       });
       addRestaurants(response.data.data.restaurant)

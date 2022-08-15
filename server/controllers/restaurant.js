@@ -36,8 +36,8 @@ export const getRestaurant = async (req, res) => {
 export const addRestaurant = async (req, res) => {
   try {
     const result = await db.query(
-      "INSERT INTO restaurants (name, location, price_range) values ($1, $2, $3) returning *",
-      [req.body.name, req.body.location, req.body.price_range]
+      "INSERT INTO restaurants (name, location, user_id, price_range) values ($1, $2, $3, $4) returning *",
+      [req.body.name, req.body.location, req.body.user_id, req.body.price_range]
     );
 
     res.status(201).json({
