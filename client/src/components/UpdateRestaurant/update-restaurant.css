@@ -1,0 +1,20 @@
+.update-restaurant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-input {
+  width: 200px;
+  height: 30px;
+}
+
+.dropdown {
+  width: 200px;
+  height: 30px;
+}
+
+.button {
+  width: 80px;
+  height: 40px;
+}
