@@ -1,10 +1,12 @@
 import { useEffect, useContext } from "react";
 
 import RestaurantFinder from "../../apis/RestaurantFinder";
+import { AuthContext } from "../../context/Auth/AuthContext";
 import { RestaurantsContext } from "../../context/Restaurants/RestaurantContext";
 import "./restaurant-list.css";
 
 const RestaurantList = (props) => {
+  const { user } = useContext(AuthContext);
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
 
   useEffect(() => {
@@ -16,6 +18,7 @@ const RestaurantList = (props) => {
         console.log(error);
       }
     };
+    console.log(restaurants)
     fetchData();
   }, []);
 
@@ -59,7 +62,7 @@ const RestaurantList = (props) => {
                 <button>Update</button>
               </td>
               <td align="center" className="restaurant-detail">
-                <button onClick={() => handleDelete(restaurant.id)}>
+                <button onClick={() => handleDelete(restaurant.id)} disabled={parseInt(user?.id) !== restaurant.user_id}>
                   Delete
                 </button>
               </td>
