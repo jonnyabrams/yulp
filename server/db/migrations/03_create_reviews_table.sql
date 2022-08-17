@@ -3,5 +3,5 @@ CREATE TABLE reviews (
   user_id BIGSERIAL NOT NULL REFERENCES users (id),
   restaurant_id BIGSERIAL NOT NULL REFERENCES restaurants (id),
   content TEXT NOT NULL,
-  rating INT check(rating >=1 and rating <=5)
+  rating INT NOT NULL check(rating >=1 and rating <=5)
 );
