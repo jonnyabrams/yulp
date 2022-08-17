@@ -48,7 +48,12 @@ const RestaurantList = (props) => {
         {restaurants &&
           restaurants.map((restaurant) => (
             <tr key={restaurant.id}>
-              <td align="center" className="restaurant-detail">
+              <td
+                align="center"
+                className="restaurant-detail"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate(`/restaurants/${restaurant.id}`)}
+              >
                 {restaurant.name}
               </td>
               <td align="center" className="restaurant-detail">
