@@ -7,6 +7,7 @@ import RestaurantFinder from "../../apis/RestaurantFinder";
 import StarRating from "../../components/StarRating/StarRating";
 import "./restaurant-details.css";
 import Reviews from "../../components/Reviews/Reviews";
+import AddReview from "../../components/AddReview/AddReview";
 
 const RestaurantDetails = () => {
   const { id } = useParams();
@@ -32,6 +33,7 @@ const RestaurantDetails = () => {
           <div className="reviews-component">
             <Reviews />
           </div>
+          <AddReview />
         </>
       )}
     </div>
