@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 
+import RestaurantFinder from "../../apis/RestaurantFinder";
+import { AuthContext } from "../../context/Auth/AuthContext";
 import "./add-review.css";
 
 const AddReview = () => {
+  const {id} = useParams();
+  const { user } = useContext(AuthContext);
   const [rating, setRating] = useState("Rating");
   const [reviewText, setReviewText] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await RestaurantFinder.post(`/${id}/add-review`, {
+      content: reviewText,
+      rating,
+      user_id: user.id,
+      username: user.username,
+      restaurant_id: id
+    })
+
+    console.log(response)
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="add-review">
           <h1>Leave a review...</h1>
           <div className="element">
