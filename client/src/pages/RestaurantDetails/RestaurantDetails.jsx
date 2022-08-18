@@ -31,7 +31,7 @@ const RestaurantDetails = () => {
       {selectedRestaurant && (
         <div className="restaurant-details-container">
           <div className="restaurant-details">
-            <h1>{selectedRestaurant.restaurant.name}</h1>
+            <span className="restaurant-name">{selectedRestaurant.restaurant.name}</span>
           </div>
           <div className="reviews-component">
             <Reviews reviews={selectedRestaurant.reviews} />

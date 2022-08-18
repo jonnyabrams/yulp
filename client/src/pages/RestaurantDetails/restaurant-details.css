@@ -12,6 +12,13 @@
   margin-top: 3px;
 }
 
+.restaurant-name {
+  font-size: 60px;
+  padding: 20px;
+  color: rgb(185, 160, 16);
+  text-shadow: 2px 2px 2px #000000;
+}
+
 h1 {
   align-self: center;
   color: white;
