@@ -2,6 +2,7 @@ import express from "express";
 
 import {
   addRestaurant,
+  addReview,
   deleteRestaurant,
   getAllRestaurants,
   getRestaurant,
@@ -24,5 +25,8 @@ router.put("/:id", updateRestaurant);
 
 // delete a restaurant
 router.delete("/:id", deleteRestaurant);
+
+// add review
+router.post("/:id/add-review", addReview);
 
 export default router;

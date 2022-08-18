@@ -18,19 +18,21 @@ export const getAllRestaurants = async (req, res) => {
 
 export const getRestaurant = async (req, res) => {
   try {
-    const restaurant = await db.query("select * from restaurants where id = $1", [
-      req.params.id,
-    ]);
+    const restaurant = await db.query(
+      "select * from restaurants where id = $1",
+      [req.params.id]
+    );
 
-    const reviews = await db.query("select * from reviews where restaurant_id = $1", [
-      req.params.id,
-    ]);
+    const reviews = await db.query(
+      "select * from reviews where restaurant_id = $1",
+      [req.params.id]
+    );
 
     res.status(200).json({
       status: "success",
       data: {
         restaurant: restaurant.rows[0],
-        reviews: reviews.rows
+        reviews: reviews.rows,
       },
     });
   } catch (error) {
@@ -81,6 +83,29 @@ export const deleteRestaurant = async (req, res) => {
     res.status(204).json({
       status: "success",
     });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addReview = async (req, res) => {
+  try {
+    const newReview = await db.query(
+      "INSERT INTO reviews (user_id, username, restaurant_id, content, rating) values ($1, $2, $3, $4, $5) returning *",
+      [
+        req.body.user_id,
+        req.body.username,
+        req.params.id,
+        req.body.content,
+        req.body.rating,
+      ]
+    );
+    res.status(201).json({
+      status: "success",
+      data: {
+        review: newReview.rows[0]
+      }
+    })
   } catch (error) {
     console.log(error);
   }
