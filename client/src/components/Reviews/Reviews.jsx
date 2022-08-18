@@ -5,15 +5,15 @@ const Reviews = ({ reviews }) => {
   return (
     <div className="reviews">
       {reviews.map((review) => (
-        <div className="card">
+        <div key={review.id} className="card">
           <div className="card-header">
-            <span>Dave</span>
+            <span>{review.username}</span>
             <span>
-              <StarRating rating={1} />
+              <StarRating rating={review.rating} />
             </span>
           </div>
           <div className="card-body">
-            <p className="card-text">Shocker of a restaurant</p>
+            <p className="card-text">{review.content}</p>
           </div>
         </div>
       ))}
