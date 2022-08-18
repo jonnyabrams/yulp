@@ -18,7 +18,7 @@ const RestaurantDetails = () => {
     const fetchData = async () => {
       try {
         const response = await RestaurantFinder.get(`/${id}`);
-        setSelectedRestaurant(response.data.data.restaurant);
+        setSelectedRestaurant(response.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -31,7 +31,7 @@ const RestaurantDetails = () => {
       {selectedRestaurant && (
         <>
           <div className="reviews-component">
-            <Reviews />
+            <Reviews reviews={selectedRestaurant.reviews} />
           </div>
           <AddReview />
         </>
