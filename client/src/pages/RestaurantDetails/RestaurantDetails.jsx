@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../../context/Restaurants/RestaurantContext";
 import RestaurantFinder from "../../apis/RestaurantFinder";
 import StarRating from "../../components/StarRating/StarRating";
+import "./restaurant-details.css";
+import Reviews from "../../components/Reviews/Reviews";
 
 const RestaurantDetails = () => {
   const { id } = useParams();
@@ -23,7 +25,17 @@ const RestaurantDetails = () => {
     fetchData();
   }, []);
 
-  return <div>{selectedRestaurant && <StarRating rating={2.1} />}</div>;
+  return (
+    <div>
+      {selectedRestaurant && (
+        <>
+          <div className="reviews-component">
+            <Reviews />
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default RestaurantDetails;

@@ -1,0 +1,27 @@
+.reviews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.card {
+  color: white;
+  background-color: blue;
+  margin-bottom: 3px;
+  margin-right: 4px;
+  max-width: 30%;
+  width: 400px;
+  height: 140px;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-text {
+  color: gold;
+}
