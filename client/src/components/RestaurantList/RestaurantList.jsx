@@ -5,6 +5,7 @@ import RestaurantFinder from "../../apis/RestaurantFinder";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { RestaurantsContext } from "../../context/Restaurants/RestaurantContext";
 import "./restaurant-list.css";
+import StarRating from "../StarRating/StarRating.jsx";
 
 const RestaurantList = (props) => {
   const { user } = useContext(AuthContext);
@@ -31,6 +32,18 @@ const RestaurantList = (props) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const renderRating = (restaurant) => {
+    if (!restaurant.count) {
+      return <span>0 reviews</span>
+    }
+    return (
+      <>
+        <StarRating rating={restaurant.average_rating} />
+        <span className="number-of-reviews">({restaurant.count})</span>
+      </>
+    );
   };
 
   return (
@@ -63,7 +76,7 @@ const RestaurantList = (props) => {
                 {"$".repeat(restaurant.price_range)}
               </td>
               <td align="center" className="restaurant-detail">
-                **
+                {renderRating(restaurant)}
               </td>
               <td align="center" className="restaurant-detail">
                 <button

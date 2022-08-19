@@ -9,11 +9,11 @@ const StarRating = ({ rating }) => {
 
   for (let i = 1; i <= 5; i++) {
     if (i <= rating) {
-      stars.push(<StarIcon key={i} style={{ color: "gold" }} />);
+      stars.push(<StarIcon key={i} style={{ color: "gold", fontSize: "14px" }} />);
     } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
-      stars.push(<StarHalfIcon key={i} style={{ color: "gold" }} />);
+      stars.push(<StarHalfIcon key={i} style={{ color: "gold", fontSize: "14px" }} />);
     } else {
-      stars.push(<StarOutlineIcon key={i} />);
+      stars.push(<StarOutlineIcon key={i} style={{ fontSize: "14px" }} />);
     }
   }
 
