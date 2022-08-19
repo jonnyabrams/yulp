@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { RestaurantsContext } from "../../context/Restaurants/RestaurantContext";
 import RestaurantFinder from "../../apis/RestaurantFinder";
@@ -13,6 +13,7 @@ const RestaurantDetails = () => {
   const { id } = useParams();
   const { selectedRestaurant, setSelectedRestaurant } =
     useContext(RestaurantsContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,12 +32,19 @@ const RestaurantDetails = () => {
       {selectedRestaurant && (
         <div className="restaurant-details-container">
           <div className="restaurant-details">
-            <span className="restaurant-name">{selectedRestaurant.restaurant.name}</span>
+            <span className="restaurant-name">
+              {selectedRestaurant.restaurant.name}
+            </span>
           </div>
           <div className="reviews-component">
             <Reviews reviews={selectedRestaurant.reviews} />
           </div>
           <AddReview />
+          <div className="home-link-container">
+            <span className="home-link" onClick={() => navigate("/")}>
+              Return to home page
+            </span>
+          </div>
         </div>
       )}
     </div>

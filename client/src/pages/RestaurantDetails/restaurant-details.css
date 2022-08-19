@@ -1,6 +1,7 @@
 .restaurant-details-container {
   height: 100vh;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), #020230), url('../../assets/food6.jpeg') center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230),
+    url("../../assets/food6.jpeg") center;
 }
 
 .restaurant-details {
@@ -19,8 +20,20 @@
   text-shadow: 2px 2px 2px #000000;
 }
 
+.home-link-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.home-link {
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
+}
+
 h1 {
   align-self: center;
   color: white;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
