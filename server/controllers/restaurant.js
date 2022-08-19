@@ -22,7 +22,7 @@ export const getAllRestaurants = async (req, res) => {
 export const getRestaurant = async (req, res) => {
   try {
     const restaurant = await db.query(
-      "select * from restaurants where id = $1",
+      "select * from restaurants left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id) reviews on restaurants.id = reviews.restaurant_id where id = $1;",
       [req.params.id]
     );
 
