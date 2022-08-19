@@ -35,7 +35,7 @@ const RestaurantDetails = () => {
             <span className="restaurant-name">
               {selectedRestaurant.restaurant.name}
             </span>
-            <span style={{ color: "white" }}>
+            <span className="reviews-average">
               {selectedRestaurant.restaurant.count ? (
                 <StarRating
                   rating={selectedRestaurant.restaurant.average_rating}
@@ -44,6 +44,7 @@ const RestaurantDetails = () => {
                 `Be the first to review ${selectedRestaurant.restaurant.name}`
               )}
             </span>
+            <span className="reviews-average">{`from ${selectedRestaurant.restaurant.count} reviews`}</span>
           </div>
           <div className="reviews-component">
             <Reviews reviews={selectedRestaurant.reviews} />
