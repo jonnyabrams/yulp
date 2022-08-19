@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./topbar.css";
 
-const Topbar = ({ user, dispatch }) => {
+const Topbar = ({ user, dispatch, setQuery }) => {
   const navigate = useNavigate();
 
   return (
@@ -16,14 +16,23 @@ const Topbar = ({ user, dispatch }) => {
       <div className="topbar-center">
         <div className="searchbar">
           <SearchIcon className="search-icon" />
-          <input placeholder="Search..." className="search-input" />
+          <input
+            placeholder="Search..."
+            className="search-input"
+            onChange={(e) => setQuery(e.target.value)}
+          />
         </div>
       </div>
 
       <div className="topbar-right">
         <span className="topbar-link">Write a Review</span>
         {user ? (
-          <button className="topbar-logout-button" onClick={() => dispatch({ type: "LOGOUT" })}>Log Out</button>
+          <button
+            className="topbar-logout-button"
+            onClick={() => dispatch({ type: "LOGOUT" })}
+          >
+            Log Out
+          </button>
         ) : (
           <button
             className="topbar-login-button"

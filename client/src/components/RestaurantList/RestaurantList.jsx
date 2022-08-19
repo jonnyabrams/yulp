@@ -7,24 +7,11 @@ import { RestaurantsContext } from "../../context/Restaurants/RestaurantContext"
 import "./restaurant-list.css";
 import StarRating from "../StarRating/StarRating.jsx";
 
-const RestaurantList = (props) => {
+const RestaurantList = ({ restaurants, setRestaurants, data }) => {
   const { user } = useContext(AuthContext);
-  const { restaurants, setRestaurants } = useContext(RestaurantsContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await RestaurantFinder.get("/");
-        setRestaurants(response.data.data.restaurants);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    console.log(restaurants);
-    fetchData();
-  }, []);
-
+ 
   const handleDelete = async (id) => {
     try {
       await RestaurantFinder.delete(`/${id}`);
@@ -59,7 +46,7 @@ const RestaurantList = (props) => {
         </tr>
 
         {restaurants &&
-          restaurants.map((restaurant) => (
+          data.map((restaurant) => (
             <tr key={restaurant.id}>
               <td
                 align="center"

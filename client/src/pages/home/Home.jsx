@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AddRestaurant from "../../components/AddRestaurant/AddRestaurant";
@@ -8,12 +8,38 @@ import "./home.css";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { useContext } from "react";
 import RestaurantList from "../../components/RestaurantList/RestaurantList";
+import { RestaurantsContext } from "../../context/Restaurants/RestaurantContext";
+import RestaurantFinder from "../../apis/RestaurantFinder";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
+  const { restaurants, setRestaurants } = useContext(RestaurantsContext);
   const [showAddRestaurant, setShowAddRestaurant] = useState(false);
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await RestaurantFinder.get("/");
+        setRestaurants(response.data.data.restaurants);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const search = (data) => {
+    return data.filter(
+      (item) =>
+        item.name.toLowerCase().includes(query) ||
+        item.location.toLowerCase().includes(query)
+    );
+  };
+
+  const tableData = search(restaurants);
 
   const capitalise = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -21,7 +47,7 @@ const Home = () => {
 
   return (
     <div className="main">
-      <Topbar user={user} dispatch={dispatch} />
+      <Topbar user={user} dispatch={dispatch} setQuery={setQuery} />
       {user ? (
         <>
           <div className="header">
@@ -52,7 +78,11 @@ const Home = () => {
           </button>
         </>
       )}
-      <RestaurantList />
+      <RestaurantList
+        restaurants={restaurants}
+        setRestaurants={setRestaurants}
+        data={tableData}
+      />
     </div>
   );
 };
