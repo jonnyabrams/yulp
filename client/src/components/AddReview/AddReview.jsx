@@ -6,22 +6,25 @@ import { AuthContext } from "../../context/Auth/AuthContext";
 import "./add-review.css";
 
 const AddReview = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState("Rating");
   const [reviewText, setReviewText] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await RestaurantFinder.post(`/${id}/add-review`, {
-      content: reviewText,
-      rating,
-      user_id: user.id,
-      username: user.username,
-      restaurant_id: id
-    })
-
-    console.log(response)
+    try {
+      await RestaurantFinder.post(`/${id}/add-review`, {
+        content: reviewText,
+        rating,
+        user_id: user.id,
+        username: user.username,
+        restaurant_id: id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
   };
 
   return (
