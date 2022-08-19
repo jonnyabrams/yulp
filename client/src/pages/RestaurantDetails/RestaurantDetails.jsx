@@ -44,7 +44,7 @@ const RestaurantDetails = () => {
                 `Be the first to review ${selectedRestaurant.restaurant.name}`
               )}
             </span>
-            <span className="reviews-average">{`from ${selectedRestaurant.restaurant.count} reviews`}</span>
+            {selectedRestaurant.restaurant.count && <span className="reviews-average">{`from ${selectedRestaurant.restaurant.count} reviews`}</span>}
           </div>
           <div className="reviews-component">
             <Reviews reviews={selectedRestaurant.reviews} />
