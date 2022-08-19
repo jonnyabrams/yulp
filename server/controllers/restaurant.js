@@ -2,13 +2,16 @@ import db from "../db/index.js";
 
 export const getAllRestaurants = async (req, res) => {
   try {
-    const results = await db.query("select * from restaurants");
+    
+    const restaurantRatingsData = await db.query(
+      "select * from restaurants left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id) reviews on restaurants.id = reviews.restaurant_id;"
+    );
 
     res.status(200).json({
       status: "success",
-      results: results.rows.length,
+      results: restaurantRatingsData.rows.length,
       data: {
-        restaurants: results.rows,
+        restaurants: restaurantRatingsData.rows,
       },
     });
   } catch (error) {
@@ -103,9 +106,9 @@ export const addReview = async (req, res) => {
     res.status(201).json({
       status: "success",
       data: {
-        review: newReview.rows[0]
-      }
-    })
+        review: newReview.rows[0],
+      },
+    });
   } catch (error) {
     console.log(error);
   }
