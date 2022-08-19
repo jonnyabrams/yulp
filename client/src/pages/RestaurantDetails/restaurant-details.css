@@ -6,7 +6,8 @@
 
 .restaurant-details {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .reviews-component {

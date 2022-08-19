@@ -35,6 +35,15 @@ const RestaurantDetails = () => {
             <span className="restaurant-name">
               {selectedRestaurant.restaurant.name}
             </span>
+            <span style={{ color: "white" }}>
+              {selectedRestaurant.restaurant.count ? (
+                <StarRating
+                  rating={selectedRestaurant.restaurant.average_rating}
+                />
+              ) : (
+                `Be the first to review ${selectedRestaurant.restaurant.name}`
+              )}
+            </span>
           </div>
           <div className="reviews-component">
             <Reviews reviews={selectedRestaurant.reviews} />
